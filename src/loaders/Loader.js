@@ -151,13 +151,35 @@ THREE.Loader.prototype = {
 					case 'specularCoef':
 						json.shininess = value;
 						break;
+					case 'roughnessCoef':
+                        			json.roughness = value;
+                        			break;
+                    			case 'metalnessCoef':
+                        			json.metalness = value;
+                        			break;
+                        		case 'envMapIntensity':
+                        			json.envMapIntensity = value;
+                        			break;
+                        		case 'emissiveIntensity':
+						json.emissiveIntensity = value;
+						break;
 					case 'shading':
+						if ( value.toLowerCase() === 'standard' ) json.type = 'MeshStandardMaterial';
 						if ( value.toLowerCase() === 'basic' ) json.type = 'MeshBasicMaterial';
 						if ( value.toLowerCase() === 'phong' ) json.type = 'MeshPhongMaterial';
 						break;
 					case 'mapDiffuse':
 						json.map = loadTexture( value, m.mapDiffuseRepeat, m.mapDiffuseOffset, m.mapDiffuseWrap, m.mapDiffuseAnisotropy );
 						break;
+					case 'mapEmissive':
+                        			json.emissiveMap = loadTexture( value, m.mapDiffuseRepeat, m.mapDiffuseOffset, m.mapDiffuseWrap, m.mapDiffuseAnisotropy );
+                        			break;
+                    			case 'mapRoughness':
+                        			json.roughnessMap = loadTexture( value, m.mapDiffuseRepeat, m.mapDiffuseOffset, m.mapDiffuseWrap, m.mapDiffuseAnisotropy );
+                        			break;
+                    			case 'mapMetalness':
+                        			json.metalnessMap = loadTexture( value, m.mapDiffuseRepeat, m.mapDiffuseOffset, m.mapDiffuseWrap, m.mapDiffuseAnisotropy );
+                        			break;
 					case 'mapDiffuseRepeat':
 					case 'mapDiffuseOffset':
 					case 'mapDiffuseWrap':
@@ -227,6 +249,9 @@ THREE.Loader.prototype = {
 						console.warn( 'THREE.Loader: transparency has been renamed to opacity' );
 						json.opacity = value;
 						break;
+					case 'alphaTest':
+                        			json.alphaTest = value;
+                        			break;
 					case 'opacity':
 					case 'transparent':
 					case 'depthTest':
